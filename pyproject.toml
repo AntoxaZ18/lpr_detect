@@ -1,0 +1,36 @@
+[project]
+name = "lpr-detect"
+version = "0.1.0"
+description = "yolo based lpr detection"
+authors = [
+    {name = "Anton",email = "antoxaz18@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+numpy = "^2"
+torch = { version = "^2.6", source = "torch118" }
+torchvision = { version = "*", source = "torch118" }
+pyyaml = "^6.0.2"
+ultralytics = "^8.3.111"
+ipykernel = "^6.29.5"
+onnx = "1.17.0"
+onnxslim = "^0.1.57"
+onnxruntime-gpu = "^1.22.0"
+onnxruntime = "^1.22.0"
+
+
+[[tool.poetry.source]]
+name = "torch118"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

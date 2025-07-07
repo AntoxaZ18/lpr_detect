@@ -1,0 +1,12 @@
+training:
+  epochs: 300
+  imgsz: 640
+  batch: 16
+  degrees: 45
+  patience: 10
+  save_period: 3
+  exist_ok: true
+  deterministic: false
+  plots: true
+  single_cls: true
+  model: 'yolo11n.pt'

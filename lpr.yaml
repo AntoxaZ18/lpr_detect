@@ -1,0 +1,5 @@
+names:
+  0: lpr
+path: d:/projects/lpr_detect
+train: ./train/images
+val: ./val/images
