@@ -1,10 +1,8 @@
-from ultralytics import YOLO
+import argparse
 import os
 import shutil
 
-ABLATION_DIR = "./ablation" #folder with ablation experiments models
-OUTPUT_DIR = './onnx_models'
-
+from ultralytics import YOLO
 
 
 def export_to_onnx(
@@ -43,6 +41,16 @@ def export_to_onnx(
 
 
 if __name__ == "__main__":
-    for experiment in os.listdir(ABLATION_DIR):
-        export_to_onnx(ABLATION_DIR, experiment, output_folder=OUTPUT_DIR)
-        print(f'Converted {experiment} - OK')
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--models", type=str, help="path to models")
+    parser.add_argument("--onnx", type=str, help="path to onnx export folder")
+
+    args = parser.parse_args()
+
+    models_folder = args.models
+    output_dir = args.onnx
+
+    for converted_model in os.listdir(args):
+        export_to_onnx(args, converted_model, output_folder=output_dir)
+        print(f"Converted {converted_model} - OK")

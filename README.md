@@ -107,7 +107,7 @@ python export_to_onnx.py --models ./ablation --onnx ./onnx_models
 --imsize размер изображения на входе (640 или 320)
 
 ```Powershell
-python onnx_benchmark.py --model model.onnx --image test_image.jpg --imsize 640
+python onnx_benchmark.py --model model.onnx --image test_image.jpg --imsize 640 --batch 8
 ```
 
 # Примечания

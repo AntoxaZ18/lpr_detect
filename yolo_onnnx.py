@@ -19,7 +19,7 @@ import onnxruntime as ort
 
 class YoloONNX:
     def __init__(
-        self, path: str, session_options=None, device="cpu", threads=1, confidence=0.2, classes=None
+        self, path: str, session_options=None, device="cpu", threads=1, confidence=0.2, iou = 0.4, classes=None, imsize = 640
     ) -> None:
         if classes is None:
             raise ValueError("Provide classes as list of names")
@@ -43,15 +43,10 @@ class YoloONNX:
         self.session = ort.InferenceSession(
             path, providers=sess_providers, sess_options=sess_options
         )  #'CUDAExecutionProvider',
-        model_inputs = self.session.get_inputs()
-        input_shape = model_inputs[0].shape
 
-        self.input_width = 320
-        self.input_height = 320
-
-        self.iou = 0.4
+        self.iou = iou
         self.confidence_thres = confidence
-        self.input_size = (320, 320)
+        self.input_size = (imsize, imsize)
         self.classes = classes
         self.color_palette = np.random.uniform(0, 255, size=(len(self.classes), 3))
         self.executor = ThreadPoolExecutor(max_workers=threads)
