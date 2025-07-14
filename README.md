@@ -7,6 +7,7 @@
 - [Датасет](#Датасет)
 - [Требования](#Требования)
 - [Установка](#Установка)
+- [Docker](#Docker)
 - [Обучение](#Обучение)
 - [Оценка](#Оценка)
 - [Ablation Study](#Ablation-Study)
@@ -63,6 +64,21 @@ Car_plate_detecting_dataset - это набор данных из примерн
    ```Powershell
    poetry env activate
    ```
+
+# Docker
+
+Для обучения в контенейре используйте сборку образа при помощи файла dockerfile
+
+Сборка 
+   ```Powershell
+   docker buildx build . -t $(DOCKER_IMAGE) --progress plain
+   ```
+
+Запуск 
+   ```Powershell
+   docker run -p 8888:8888 --rm --gpus all -v .:/app $(DOCKER_IMAGE) 
+   ```
+
 # Обучение
 
 Скрипт обучения находится в train.ipynb
